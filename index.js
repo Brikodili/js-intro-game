@@ -7,10 +7,10 @@ if (start === true) {
 }
 
 function checkNum() {
-    var c; // coefficient
+    var coefficient;
     var money = 0;
 
-    for (c = 1; c > 0; c *= 3) {
+    for (coefficient = 1; coefficient > 0; coefficient *= 3) {
         var randomNum = Math.floor( Math.random() * 5) + 1;
         console.log(randomNum); // для проверки
 
@@ -27,17 +27,17 @@ function checkNum() {
 
         switch (i) {
             case 1:
-                money += 10 * c;
+                money += 10 * coefficient;
                 break;
             case 2:
-                money += 5 * c;
+                money += 5 * coefficient;
                 break;
             case 3:
-                money += 2 * c;
+                money += 2 * coefficient;
                 break;
             case 4:
                 money = 0;
-                c = -1;
+                coefficient = -1;
                 break;
             default:
                 alert('Error');
@@ -48,7 +48,7 @@ function checkNum() {
             var continueGame = confirm('Continue?');
 
             if (continueGame === false) {
-                c = -1;
+                coefficient = -1;
                 console.log('Thanks for the game! Your winnings - ' + money);
                 break;
             }
