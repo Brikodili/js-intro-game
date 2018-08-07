@@ -49,7 +49,7 @@ function checkNum() {
 
             if (continueGame === false) {
                 c = -1;
-                console.log('Thanks for the game! Your winnings - '  + money);
+                console.log('Thanks for the game! Your winnings - ' + money);
                 break;
             }
         }
