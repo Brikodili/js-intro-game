@@ -17,8 +17,9 @@ function askNumber(guessedNumber) {
     };
 
     var i = 1;
-
-    while (i < 4) {
+    var MAX_COUNT = 4;
+    
+    while (i < MAX_COUNT) {
         var promptNumber = Number(prompt('Enter a number between 1 and 5', ''));
 
         if (promptNumber === guessedNumber) {
