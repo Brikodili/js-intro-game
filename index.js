@@ -1,60 +1,68 @@
 var start = confirm('Start?');
 
-if (start === true) {
-    checkNum();
+if (start) {
+    startGame(0, 10);
 } else {
     alert('Not today');
 }
 
-function checkNum() {
-    var coefficient;
-    var money = 0;
+function createNumber() {
+    return Math.floor( Math.random() * 5) + 1;
+}
 
-    for (coefficient = 1; coefficient > 0; coefficient *= 3) {
-        var randomNum = Math.floor( Math.random() * 5) + 1;
-        console.log(randomNum); // для проверки
+function askNumber(guessedNumber) {
+    var response = {
+        success: false,
+        attemptNumber: null
+    };
 
-        var i = 1;
+    var i = 1;
 
-        while (i < 4) {
-            var userNum = +prompt('Enter a number between 1 and 5', '');
+    while (i < 4) {
+        var promptNumber = Number(prompt('Enter a number between 1 and 5', ''));
 
-            if (userNum === randomNum) break;
-            else {
-                i++;
-            }
+        if (promptNumber === guessedNumber) {
+            response['success'] = true;
+            response['attemptNumber'] = i;
+
+            break;
         }
 
-        switch (i) {
+        i++;
+    }
+
+    return response;
+}
+
+function startGame(money, maxWin) {
+    console.log('Current money:', money);
+
+    var number = createNumber();
+    console.log(number);
+    var answer = askNumber(number);
+
+    if (answer.success) {
+        var maxWinDevider;
+
+        switch (answer.attemptNumber) {
             case 1:
-                var win = 10;
-                money += win * coefficient;
-                break;
+                maxWinDevider = 1; break;
             case 2:
-                var win = 5;
-                money += win * coefficient;
-                break;
+                maxWinDevider = 2; break;
             case 3:
-                var win = 2;
-                money += win * coefficient;
-                break;
-            case 4:
-                money = 0;
-                coefficient = -1;
-                break;
-            default:
-                alert('Error');
+                maxWinDevider = 5; break;
         }
-        console.log('Your winnings - ' + money);
 
-        if (i <= 3) {
-            var continueGame = confirm('Continue?');
+        money += maxWin / maxWinDevider;
+        maxWin = maxWin * 3;
+        console.log('You won:', money);
+    } else {
+        maxWin = 10;
+    }
 
-            if (continueGame === false) {
-                coefficient = -1;
-                console.log('Thanks for the game! Your winnings - ' + money);
-                break;
-            }
-        }
+    if (confirm('Continue?')) {
+        startGame(money, maxWin)
+    } else {
+        console.log('Thanks for the game! Your winnings - ', money);
     }
 }
