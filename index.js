@@ -27,13 +27,16 @@ function checkNum() {
 
         switch (i) {
             case 1:
-                money += 10 * coefficient;
+                var win = 10;
+                money += win * coefficient;
                 break;
             case 2:
-                money += 5 * coefficient;
+                var win = 5;
+                money += win * coefficient;
                 break;
             case 3:
-                money += 2 * coefficient;
+                var win = 2;
+                money += win * coefficient;
                 break;
             case 4:
                 money = 0;
